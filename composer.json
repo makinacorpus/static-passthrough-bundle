@@ -24,5 +24,10 @@
     "require-dev": {
         "phpunit/phpunit": "^5.7",
         "symfony/config": "^4.3.3|^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MakinaCorpus\\StaticPassthroughBundle\\" : "src/"
+        }
     }
 }
