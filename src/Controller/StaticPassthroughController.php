@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mime\MimeTypes;
 
@@ -16,12 +17,13 @@ class StaticPassthroughController extends AbstractController
 {
     public function passthrough(Request $request, string $projectDir, string $rootFolder, string $path): Response
     {
-        $filename = \sprintf(
-            "%s/%s/%s",
-            $projectDir,
-            $rootFolder,
-            $path
-        );
+        $absoluteRootFolder = \sprintf("%s/%s", $projectDir, $rootFolder);
+        $filename = \sprintf("%s/%s", $absoluteRootFolder, $path);
+
+        // Check if user tries to get a file outside root folder
+        if (false === \strpos(\realpath($filename), $absoluteRootFolder)) {
+            throw new AccessDeniedHttpException(\sprintf("Can't access '%s': it's outside '%s'", $filename, $rootFolder));
+        }
 
         // If $filename does not end by an extension, we redirect to an hypothetical
         // $filename . '.html' or $filename . '/index.html'
