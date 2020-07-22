@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace MakinaCorpus\StaticPassthroughBundle\Routing;
 
-use InvalidArgumentException;
 use MakinaCorpus\StaticPassthroughBundle\Controller\StaticPassthroughController;
 use Symfony\Bundle\FrameworkBundle\Routing\RouteLoaderInterface;
 use Symfony\Component\Routing\Route;
@@ -31,10 +30,10 @@ final class StaticPassthroughRouteLoader implements RouteLoaderInterface
         foreach ($this->definitions as $name => $definition) {
 
             if (!\array_key_exists('path_prefix', $definition)) {
-                throw new InvalidArgumentException("Static Pathrough definition should have a 'path_prefix' field, check your `config/package/static_pathrough.yml` file.");
+                throw new \InvalidArgumentException("Static Pathrough definition should have a 'path_prefix' field, check your `config/package/static_pathrough.yml` file.");
             }
             if (!\array_key_exists('root_folder', $definition)) {
-                throw new InvalidArgumentException("Static Pathrough definition should have a 'root_folder' field, check your `config/package/static_pathrough.yml` file.");
+                throw new \InvalidArgumentException("Static Pathrough definition should have a 'root_folder' field, check your `config/package/static_pathrough.yml` file.");
             }
 
             $ret->add(
