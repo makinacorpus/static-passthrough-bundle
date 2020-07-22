@@ -1,6 +1,6 @@
 {
     "name": "makinacorpus/static-passthrough-bundle",
-    "description": "Easily serve a tree of folders and statics html files ",
+    "description": "Easily serve a tree of statics files through Symfony",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [

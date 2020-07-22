@@ -5,29 +5,48 @@ This bundle has been developped for a simple use case : serve a built documentat
 
 ### Getting started
 
-First get sources with composer:
+#### 1/ Get sources with Composer:
 
-```
+```sh
 composer require makinacorpus/static-passthrough-bundle
 ```
 
-Then create a `statics` folder in the root directory of your application. Put a simple `test.html` file in it.
+#### 2/ Register the bundle
 
-Configure the bundle in a `config/package/static_passthrough.yaml` file:
+```php
+# config/bundles.php
+return [
 
+    // ...
+
+    MakinaCorpus\StaticPassthroughBundle\StaticPassthroughBundle::class => ['all' => true],
+
+    // ...
+];
 ```
+
+#### 3/ Configure the Static Passthrough
+
+Let's assume we have a `statics` folder in the root directory of our application, with a simple `test.html` file in it:
+that's the static file we want to serve through our Symfony app.
+
+To do so, configure the bundle like this:
+
+```yaml
 # config/package/static_passthrough.yaml
 static_passthrough:
   definitions:
     docs:
       root_folder: 'statics' # Where to find files to passthrough (relative to %kernel.project_dir%)
-      path_prefix: 'static/' # Root path to reach files through
+      path_prefix: 'statics/' # Root path to reach files in root_folder
 ```
 
-Clear the cache:
+Don't forget to clear the cache:
 
-```
+```sh
 bin/console c:c
 ```
 
-Visit `example.com/dev/static/test.html`, you should see your HTML file appears.
+#### 4/ Reach the file with your browser :
+
+Visit `[app_basepath]/statics/test.html`, you should see your HTML file appears.
