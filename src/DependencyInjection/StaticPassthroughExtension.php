@@ -17,7 +17,7 @@ class StaticPassthroughExtension extends ConfigurableExtension
 
         $loader = new ProtectedPhpFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../Resources/config')
+            new FileLocator(\dirname(\__DIR__) . '/Resources/config')
         );
         $loader->load('services.php');
     }

@@ -12,6 +12,7 @@ use Symfony\Component\Routing\RouteCollection;
 final class StaticPassthroughRouteLoader implements RouteLoaderInterface
 {
     private string $projectDir;
+    /** @var string[][] */
     private array $definitions;
 
     public function __construct(string $projectDir, array $definitions)
