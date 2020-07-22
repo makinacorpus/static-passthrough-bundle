@@ -1,4 +1,4 @@
-# Static Passthrough Bundle: easily serve a tree of folders and statics html files through Symfony
+# Static Passthrough Bundle: easily serve a tree of statics files through Symfony
 
 This bundle has been developped for a simple use case : serve a built documentation through a symfony application.
 
