@@ -49,9 +49,9 @@ To do so, configure the bundle like this:
 # config/package/static_passthrough.yaml
 static_passthrough:
   definitions:
-    docs: # Route name will be static_passthrough_docs
-      root_folder: 'docs' # Where to find files to passthrough (relative to %kernel.project_dir%)
-      path_prefix: 'docs/' # Root path to reach files in root_folder
+    docs: # Route name will be 'static_passthrough_docs'
+      root_folder: 'docs' # Where to find files to passthrough (this path has to be relative to %kernel.project_dir%)
+      path_prefix: 'docs/' # Path to reach files in root_folder
 ```
 
 Don't forget to clear the cache:
@@ -65,15 +65,15 @@ bin/console c:c
 Visit `[app_basepath]/docs/test.html`, you should see your HTML file appear.
 
 Note that you could also view it visiting `[app_basepath]/docs/test`,
-in fact when you try to visit `[app_basepath]/docs/test`, the bundle will look for a file these different paths, in that order:
+in fact when you try to visit `[app_basepath]/docs/test`, the bundle will look for a file in these different paths, in that order:
 
 * `[app_basepath]/docs/test`
 * `[app_basepath]/docs/test.html`
 * `[app_basepath]/docs/test/index.html`
 
-## Generate URL
+### 6/ Generate URL
 
-With the configuration describes in the _Getting Started_, here is an examples to create an URL to reach 'test.html':
+Here is an examples to create an URL to reach 'test.html' file described above:
 
 From a controller:
 
