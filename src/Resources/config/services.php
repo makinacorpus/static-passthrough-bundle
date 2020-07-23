@@ -4,8 +4,7 @@ use MakinaCorpus\StaticPassthroughBundle\Controller\StaticPassthroughController;
 use MakinaCorpus\StaticPassthroughBundle\Routing\StaticPassthroughRouteLoader;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return function(ContainerConfigurator $configurator)
-{
+return function (ContainerConfigurator $configurator) {
     $services = $configurator->services()
         ->defaults()
         ->autowire()      // Automatically injects dependencies in your services.

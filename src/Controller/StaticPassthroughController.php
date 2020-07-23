@@ -77,7 +77,7 @@ class StaticPassthroughController extends AbstractController
         $extension = \pathinfo($filename, \PATHINFO_EXTENSION);
 
         if (\count($types = $mimeTypes->getMimeTypes($extension))) {
-            return reset($types);
+            return \reset($types);
         }
 
         return $mimeTypes->guessMimeType($filename) ?? '';

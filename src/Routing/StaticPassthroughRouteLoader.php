@@ -29,7 +29,6 @@ final class StaticPassthroughRouteLoader implements RouteLoaderInterface
         $ret = new RouteCollection();
 
         foreach ($this->definitions as $name => $definition) {
-
             if (!\array_key_exists('path_prefix', $definition)) {
                 throw new \InvalidArgumentException("Static Pathrough definition should have a 'path_prefix' field, check your `config/package/static_pathrough.yml` file.");
             }
@@ -45,7 +44,7 @@ final class StaticPassthroughRouteLoader implements RouteLoaderInterface
                         '_controller' => \sprintf('%s::%s', StaticPassthroughController::class, 'passthrough'),
                         'path' => '/',
                         'projectDir' => $this->projectDir,
-                        'rootFolder' => $definition['root_folder'] ,
+                        'rootFolder' => $definition['root_folder'],
                     ],
                     [
                         'path' => '.+',
