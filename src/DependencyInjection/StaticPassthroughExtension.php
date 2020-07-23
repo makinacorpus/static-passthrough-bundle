@@ -6,11 +6,8 @@ namespace MakinaCorpus\StaticPassthroughBundle\DependencyInjection;
 
 use MakinaCorpus\StaticPassthroughBundle\Controller\StaticPassthroughController;
 use MakinaCorpus\StaticPassthroughBundle\Routing\StaticPassthroughRouteLoader;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Loader\ProtectedPhpFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 class StaticPassthroughExtension extends ConfigurableExtension
