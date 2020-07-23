@@ -62,7 +62,14 @@ bin/console c:c
 
 ### 5/ Reach the file with your browser :
 
-Visit `[app_basepath]/docs/test.html`, you should see your HTML file appears.
+Visit `[app_basepath]/docs/test.html`, you should see your HTML file appear.
+
+Note that you could also view it visiting `[app_basepath]/docs/test`,
+in fact when you try to visit `[app_basepath]/docs/test`, the bundle will look for a file these different paths, in that order:
+
+* `[app_basepath]/docs/test`
+* `[app_basepath]/docs/test.html`
+* `[app_basepath]/docs/test/index.html`
 
 ## Generate URL
 

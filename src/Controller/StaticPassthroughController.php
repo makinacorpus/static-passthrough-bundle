@@ -19,15 +19,11 @@ class StaticPassthroughController extends AbstractController
         $absoluteRootFolder = \sprintf("%s/%s", $projectDir, $rootFolder);
         $filename = \sprintf("%s/%s", $absoluteRootFolder, $path);
 
-        // If $filename does not end by an extension, we redirect to an hypothetical
-        // $filename . '.html' or $filename . '/index.html'
-        if (!\pathinfo($filename, \PATHINFO_EXTENSION)) {
-            return $this->redirectToHtml($request, $filename);
-        }
-
         // Check if file exists
-        if (!$realPath = \realpath($filename)) {
-            throw new NotFoundHttpException(\sprintf("'%s' file can't be found", $filename));
+        if (!($realPath = \realpath($filename)) || \is_dir($filename)) {
+            // If $filename does not exist, we try an hypothetical
+            // $filename . '.html' or $filename . '/index.html'
+            return $this->redirectToHtml($request, $filename);
         }
 
         // Check if user tries to get a file outside root folder
