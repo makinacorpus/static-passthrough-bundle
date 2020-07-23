@@ -6,6 +6,7 @@ namespace MakinaCorpus\StaticPassthroughBundle\Tests\Routing;
 
 use MakinaCorpus\StaticPassthroughBundle\Routing\StaticPassthroughRouteLoader;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class StaticPassthroughRouteLoaderTest extends TestCase
 {
@@ -38,5 +39,35 @@ class StaticPassthroughRouteLoaderTest extends TestCase
         self::assertSame('/path/to/project', $route->getDefault('projectDir'));
         self::assertSame('bar/baz/foo2', $route->getDefault('rootFolder'));
         self::assertSame('MakinaCorpus\StaticPassthroughBundle\Controller\StaticPassthroughController::passthrough', $route->getDefault('_controller'));
+    }
+
+    public function testRouteLoaderWithConfWithoutRootFolder()
+    {
+        $routeLoader = new StaticPassthroughRouteLoader(
+            '/path/to/project',
+            [
+                'foo2' => [
+                    'path_prefix' => 'bar/foo2',
+                ],
+            ]
+        );
+
+        $this->expectException(InvalidConfigurationException::class);
+        $routeLoader->loadRoutes();
+    }
+
+    public function testRouteLoaderWithConfWithoutPathPrefix()
+    {
+        $routeLoader = new StaticPassthroughRouteLoader(
+            '/path/to/project',
+            [
+                'foo1' => [
+                    'root_folder' => 'bar/baz/foo1',
+                ],
+            ]
+        );
+
+        $this->expectException(InvalidConfigurationException::class);
+        $routeLoader->loadRoutes();
     }
 }
