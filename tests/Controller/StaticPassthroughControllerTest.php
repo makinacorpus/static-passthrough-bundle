@@ -49,8 +49,6 @@ class StaticPassthroughControllerTest extends KernelTestCase
     public function testBrowsingFileWithoutExtension()
     {
         $controller = new StaticPassthroughController();
-        $container = self::$container;
-        \var_dump($container);
 
         $response = $controller->passthrough(new Request(['path' => 'foo/bar']), \dirname(__DIR__), 'Resources', 'foo/bar');
 
@@ -61,8 +59,6 @@ class StaticPassthroughControllerTest extends KernelTestCase
     public function testBrowsingFolderWithIndex()
     {
         $controller = new StaticPassthroughController();
-        $container = self::$container;
-        \var_dump($container);
 
         $response = $controller->passthrough(new Request(['path' => 'foo/bar']), \dirname(__DIR__), 'Resources', 'foo');
 
