@@ -32,6 +32,13 @@ class StaticPassthroughExtension extends ConfigurableExtension
             '$projectDir' => '%kernel.project_dir%',
             '$definitions' => '%static_passthrough.definitions%',
         ]);
+        // This tag is supposed to be added automatically by framework bundle
+        // using auto-detection on RouteLoaderInterface interface, but I think
+        // that the auto-registration will only work on statically loaded stuff
+        // (from YAML files) because it's probably done too soon, those services
+        // are not yet in the container. It works until 5.0.8, it broke after
+        // upgrade to 5.0.11.
+        $definition->addTag('routing.route_loader');
         $definition->setPrivate(true);
 
         $container->setDefinition(StaticPassthroughRouteLoader::class, $definition);
