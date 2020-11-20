@@ -8,6 +8,7 @@ use MakinaCorpus\StaticPassthroughBundle\Controller\StaticPassthroughController;
 use MakinaCorpus\StaticPassthroughBundle\Routing\StaticPassthroughRouteLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 class StaticPassthroughExtension extends ConfigurableExtension
@@ -20,6 +21,7 @@ class StaticPassthroughExtension extends ConfigurableExtension
         // Define StaticPassthroughController service
         $definition = new Definition();
         $definition->setClass(StaticPassthroughController::class);
+        $definition->addMethodCall('setContainer', [new Reference('service_container')]);
         $definition->addTag('controller.service_arguments');
         $definition->setPrivate(true);
 
