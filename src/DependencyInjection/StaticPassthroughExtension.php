@@ -20,7 +20,7 @@ class StaticPassthroughExtension extends ConfigurableExtension
         // Define StaticPassthroughController service
         $definition = new Definition();
         $definition->setClass(StaticPassthroughController::class);
-        $definition->setTags(['controller.service_arguments']);
+        $definition->addTag('controller.service_arguments');
         $definition->setPrivate(true);
 
         $container->setDefinition(StaticPassthroughController::class, $definition);
