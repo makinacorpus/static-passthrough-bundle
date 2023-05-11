@@ -23,7 +23,6 @@ class StaticPassthroughExtension extends ConfigurableExtension
         $definition->setClass(StaticPassthroughController::class);
         $definition->addMethodCall('setContainer', [new Reference('service_container')]);
         $definition->addTag('controller.service_arguments');
-        $definition->setPrivate(true);
 
         $container->setDefinition(StaticPassthroughController::class, $definition);
 
@@ -41,7 +40,6 @@ class StaticPassthroughExtension extends ConfigurableExtension
         // are not yet in the container. It works until 5.0.8, it broke after
         // upgrade to 5.0.11.
         $definition->addTag('routing.route_loader');
-        $definition->setPrivate(true);
 
         $container->setDefinition(StaticPassthroughRouteLoader::class, $definition);
     }
