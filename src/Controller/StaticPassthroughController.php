@@ -60,7 +60,7 @@ class StaticPassthroughController extends AbstractController
             '%s%s%s%s',
             $request->getSchemeAndHttpHost(),
             $request->getBaseUrl(),
-            \rtrim($request->getPathInfo()),
+            \rtrim($request->getPathInfo(), '/'),
             $suffix
         ));
     }
