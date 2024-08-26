@@ -1,10 +1,10 @@
 # Static Passthrough Bundle: easily serve a tree of statics files through Symfony
 
-This bundle has been developped for a simple use case : serve a built documentation through a symfony application.
+This bundle has been developed for a simple use case : serve static files (e.g. generated documentation) through a Symfony application.
 
 ## Getting started
 
-### 1/ Get sources with Composer:
+### 1/ Install with Composer:
 
 ```sh
 composer require makinacorpus/static-passthrough-bundle
