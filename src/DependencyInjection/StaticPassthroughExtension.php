@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 class StaticPassthroughExtension extends ConfigurableExtension
 {
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         // Set Static Passthrough parameter in container
         $container->setParameter('static_passthrough.definitions', $mergedConfig['definitions'] ?? []);
